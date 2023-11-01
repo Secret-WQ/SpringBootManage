@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    username: root
+    password: wangqi
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/manage?serverTimezone=UTC&characterEncoding=utf8
+  #    日期格式化
+  mvc:
+    format:
+      date-time: yyyy-MM-dd HH:mm:ss
+
+server:
+  port: 9090
+
+mybatis-plus:
+  type-aliases-package: com.wq.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false # 数据库下划线自动转驼峰标示关闭
+
+
+files:
+  upload:
+    path: E:/Project/File/

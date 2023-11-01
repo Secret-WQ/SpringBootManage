@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wq.mapper.UserMapper">
+
+    <resultMap type="User" id="getUserResultMap">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="create_time" column="create_time"/>
+        <result property="avatar_url" column="avatar_url"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="getUserResultMap">
+        select *
+        from user
+    </select>
+
+    <select id="findById" resultType="User">
+        select *
+        from user
+        where id = #{id};
+    </select>
+
+
+    <insert id="addUser" parameterType="User">
+        insert into user (username, password, nickname, email, phone, address)
+        values (#{username}, #{password}, #{nickname}, #{email}, #{phone}, #{address});
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update user
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="nickname != null">nickname=#{nickname},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="address != null">address=#{address}</if>
+        </set>
+        where id = #{id};
+    </update>
+
+
+</mapper>
